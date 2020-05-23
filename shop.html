@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Nvidia RTX </title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,800;1,100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1389b85be8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="shop.css">
+<style>
+
+    
+</style>
+</head>
+<body>
+
+<ul>
+  <div class="center">
+  <img class="geforcelogo" src="GEFORCE-Logo.svg">
+  <br/>
+  <i class="fas fa-shopping-cart"></i>
+  <p class="numberproduct">items: <span id="shopitems" >0</span></p>
+  <br/>
+</div>
+<br/>
+<br/>
+<br/>
+ 
+<li><a  onclick="clearcart()"><b class="fas fa-trash"></b> Clear Shopping Cart</a></li>
+  <li><a onclick="removecart()"><b class="fas fa-eraser"></b> Remove Previous Add</a></li>
+  <li><a onclick="checkout()"><b class="far fa-credit-card"></b> Checkout</a></li>
+  <br/>
+   <li><a  class="active" href="index.html"><b class="fas fa-home"></b> Go Main Page</a></li>
+
+  
+</ul>
+
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+
+    <style>
+    </style>
+    <div class="shopbtn">
+        <p class="numberproduct">Click Add To Cart to set order</p>
+
+    </div>
+
+<h1>SHOP ALL GEFORCE RTX</h1>
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2>GEFORCE RTX 2080 Ti</h2>
+    <h3>$1,199.00</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+
+
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2>GEFORCE RTX 2080 SUPER</h2>
+    <h3>$1,000.00</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2>GEFORCE RTX 2070 SUPER</h2>
+    <h3>$1,599.00</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2>GEFORCE RTX 2060 SUPER</h2>
+    <h3>$1,999.00</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+
+
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2>GEFORCE RTX 2080</h2>
+    <h3>$799.00</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+
+<div class="rtxcontainer">
+    <img class="rtx" src="GPU1.png">
+    <h2 class="limited">GEFORCE RTX 2060</h2>
+    <h3 class="limited">$299.00</h3>
+    <h3 class="limited">LIMITED</h3>
+    <div class="btncont">
+    <button class="buy" onclick="addtocart()">ADD TO CART </button>
+</div>
+</div>
+<div>
+
+    <img class="block" src="background4.png" >
+
+</div>
+</div>
+
+
+<div class="fourthtile">
+    <br/>
+    <div class="center">
+    <img src="GEFORCE-Logo.svg">
+</div>
+        <p style="color:white; font-size: 35px; text-align: center;"> Ready To Achieve? </p>
+        
+        <div class="center">
+            <br/>
+            
+        </div>
+
+        <script>
+            var x=0;
+            function addtocart() {
+                x=x+1;
+                document.getElementById("shopitems").innerHTML =x;
+            }
+
+function clearcart(){
+    x=0;
+    document.getElementById("shopitems").innerHTML =x;
+}
+function removecart(){
+    if(x<=0){clearcart()}else{x=x-1; document.getElementById("shopitems").innerHTML =x;}
+}
+function checkout(){
+    document.getElementById("shopitems").innerHTML ="finished";
+}
+
+
+
+        </script>
+
+
+</body>
+</html>
