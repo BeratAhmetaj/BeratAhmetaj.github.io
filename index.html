@@ -6,74 +6,57 @@
     <script src="https://kit.fontawesome.com/1389b85be8.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-     <!-- TEMPORARY SASS CSS STLE -->
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-             
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    
     <title>Berat Ahmteaj | Portfolio</title>
-<style>
-    *{
-        font-family: 'Roboto', sans-serif;
-    }
-body {
-    background-color: rgb(58, 58, 58);
-  margin: 0;
-}
-.logo{
-    width: 70px;
-}
-.nav-wrapper{
+    <style>
+body{
     background-color: black;
-}
-h1{
-    color: rgb(255, 255, 255);
-    font-size: 20px;
     text-align: center;
 }
-.projects{
-    margin: 40%;
-    margin-top: 0;
+.sect{
+    display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-left: 300px;
 }
-</style>
-<nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center"><img class="logo" src="./beratlogo.png"></a>
-    </div>
-</nav>
-<section class="projects">
-    <div class="project">
-        <h1>temporary project viewer</h1>
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="./Geforce/bckgloop.png">
+h1{ color: white;
+text-align: center;}
+
+@media only screen and (max-width: 600px) {
+  .sect{
+      padding-left: 0;
+      margin: 100px;
+  }
+}
+    </style>
+    </head>
+<body>
+
+    <h1> Projects: </h1>
+
+<section class="sect">
+
+    <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="./Geforce/blog_img.jpg">
+              <span class="card-title">Geforce Shop</span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red" href="./Geforce/gfhome.html"><i class="material-icons">+</i></a>
             </div>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Geforce Shop Store</span>
-              <p><a href="./Geforce/gfhome.html">Click here to view project</a></p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-              <p>Here is some more information about this product that is only revealed once clicked on.</p>
+              <p>Click The Plus Sign To Check Out My First I Ever Made With HTML/CSS and Javascript</p>
             </div>
           </div>
-          <br/>
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="./blog_banksite.jpg">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Geforce Shop Store</span>
-              <p><a href="">Project Soon...</a></p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-              <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-          </div>     
-    </div>
+        </div>
+      </div>
+      
 
 </section>
 
