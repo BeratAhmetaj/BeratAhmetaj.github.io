@@ -2,7 +2,7 @@
 
 if (isset($_POST["submit"])) {
     
-    $username = $_POST["name"];
+    $username = $_POST["username"];
     $pass = $_POST["pass"];
 
 require_once 'dbinfo.php';    
