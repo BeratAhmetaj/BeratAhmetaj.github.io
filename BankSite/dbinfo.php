@@ -5,10 +5,10 @@ $dBUsername = "root";
 $dBPassword = "";
 $dBName = "moneytree";
 
-$connect = mysqli_connect($serverName, $dbUsername, $dbPassword, $dBName);
+$connect = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 
 if (!$connect) {
-    die("connection failed: ". mysqli_connect_error());
+    die("Connection Failed: ". mysqli_connect_error());
 }
 
 ?>
