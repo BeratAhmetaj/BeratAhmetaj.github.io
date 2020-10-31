@@ -11,7 +11,7 @@ require_once 'functions.php';
 checkLogin($username,$pass);
 
 } else {
-    header("Location: ./login.html?error=Thats Not How The Internet Works Bud.");
+    header("Location: ./login.php?error=nicetry");
 }
 
 ?>

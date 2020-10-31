@@ -2,20 +2,28 @@
 
 function checkLogin($username, $pass){
 include "dbinfo.php";
-$sql = "SELECT * FROM users WHERE Username='$username' AND Password='$pass'";
 
-$result = mysqli_query($connect, $sql);
+$hash_sql = "SELECT Pass FROM users WHERE Username = '$username' ";
 
-if(mysqli_num_rows($result)) {
-    echo"Hello";
-} else { header("Location: ./login.html?error=Wrong Login Data "); }
+$result = mysqli_query($connect, $hash_sql);
+
+$row = mysqli_fetch_assoc($result);
+
+$verify = password_verify($pass,$row["Pass"]);
+
+if($verify) {
+    echo"welcome";
+} else { echo"hashing password problem, contact site owner for info"; }
 }
+
+
 
 function passwordCheck($pass, $passRepeat){
     if ($pass !== $passRepeat) {
         $result=true;  
     }
     else {
+        
         $result=false;
     }
     return $result;
@@ -28,7 +36,9 @@ function usernameTaken($username, $connect){
 
     if(mysqli_num_rows($result)) {
         return true;
-    } else { return false; }
+    } else { return false;
+        
+     }
 
 }
 
@@ -36,7 +46,7 @@ function createUser($username,$pass,$email){
     include "dbinfo.php";
 $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO `users` (`Id`, `Email`, `Password`, `Username`) VALUES (NULL, '$email', '$hashedpass', '$username')";
+    $sql = "INSERT INTO `users` (`Id`, `Email`, `Pass`, `Username`) VALUES (NULL, '$email', '$hashedpass', '$username')";
 
     $result = mysqli_query($connect, $sql);
     

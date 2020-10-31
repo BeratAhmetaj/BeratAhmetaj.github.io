@@ -12,19 +12,19 @@ if (isset($_POST["submit"])) {
 
     
     if (passwordCheck($pass, $passRepeat) === true){
-        header("Location: ./login.html?error=Passwords Dont Match ");
+        header("Location: ./login.php?error=passmatch");
     exit();
     }
 
     if (usernameTaken($username, $connect) === true){
-        header("Location: ./login.html?error=Username Is Taken ");
+        header("Location: ./login.php?error=usernametaken");
     exit();
      }    
     
     createUser($username,$pass,$email);    
 
 } else {
-    header("Location: ./login.html?error=Thats Not How The Internet Works Bud ");
+    header("Location: ./login.php?error=nicetry");
 }
 
 ?>
