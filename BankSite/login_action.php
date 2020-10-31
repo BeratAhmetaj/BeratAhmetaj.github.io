@@ -11,7 +11,7 @@ require_once 'functions.php';
 checkLogin($username,$pass);
 
 } else {
-    echo"You son of a bitch, dont try to hack my site.";
+    header("Location: ./login.html?error=Thats Not How The Internet Works Bud.");
 }
 
 ?>

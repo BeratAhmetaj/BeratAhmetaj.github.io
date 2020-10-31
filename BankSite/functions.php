@@ -8,7 +8,7 @@ $result = mysqli_query($connect, $sql);
 
 if(mysqli_num_rows($result)) {
     echo"Hello";
-} else { echo"wrong info"; }
+} else { header("Location: ./login.html?error=Wrong Login Data "); }
 }
 
 function passwordCheck($pass, $passRepeat){

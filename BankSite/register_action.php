@@ -12,19 +12,19 @@ if (isset($_POST["submit"])) {
 
     
     if (passwordCheck($pass, $passRepeat) === true){
-    echo"Password not the same idiot";
+        header("Location: ./login.html?error=Passwords Dont Match ");
     exit();
     }
 
     if (usernameTaken($username, $connect) === true){
-    echo"Username is taken";
+        header("Location: ./login.html?error=Username Is Taken ");
     exit();
      }    
     
     createUser($username,$pass,$email);    
 
 } else {
-    echo"You son of a bitch, dont try to hack my site.";
+    header("Location: ./login.html?error=Thats Not How The Internet Works Bud ");
 }
 
 ?>
