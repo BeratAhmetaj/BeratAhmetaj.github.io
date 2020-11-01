@@ -126,7 +126,15 @@
       height: 100%;
       z-index: -1;
       opacity: 90%;
-    
+    }
+
+    @media only screen and (max-width: 1000px) {
+    .inp{
+      width:260px;
+    }
+    .inp:hover{
+      width:300px;
+    }
     }
   </style>
 </head>

@@ -162,7 +162,7 @@
         .cards {
             display: block;
             position: relative;
-            left: 22%;
+            left: 0%;
         }
 
         .services {
@@ -175,9 +175,22 @@
             top: 90px;
             left: 1%;
         }
+.card:hover{
+    transition: 0.3s;
+        width: auto;
 
+}
+.makemoney{
+    width: 350px;
+        padding-right: 110px;
+        padding-top: 60px;
+        
+}
         .bank-pic {
             visibility: hidden;
+        }
+        .signup{
+            display: none;
         }
     }
 
@@ -314,7 +327,30 @@
 
         <img class="bank-pic" src="./img/waiting.jpg">
     </section>
-
+<style>
+    @media only screen and (max-width: 1000px) {
+    
+    .bank-pic{
+        display: none;
+    }
+    .ending-text{
+        text-align: center;
+        position: relative;
+        color: #7D3CF8;
+        font-size: 80px;
+        font-weight: 5000;
+        width: 500px;
+        top: 100px;
+        left: 0px;
+    }
+    .info-text{
+        font-size: 25px;
+    }
+.bank-section{
+    height: 650px;
+}
+    }
+</style>
 </body>
 
 </html>
