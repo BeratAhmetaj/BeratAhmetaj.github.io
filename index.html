@@ -16,49 +16,47 @@
     <title>Berat Ahmteaj | Portfolio</title>
     <style>
 body{
-    background-color: black;
-    text-align: center;
+background-color: black;
+text-align: center;
 }
-.sect{
-    display: flex;
-  justify-content: center;
-  flex-direction: row;
-  padding-left: 300px;
+h1{ 
+color: white;
+text-align: center;
 }
-h1{ color: white;
-text-align: center;}
+button{
+color: rgb(255, 255, 255);
+text-align: center;
+display: flex;
+justify-content:center;
+margin-left: auto;
+margin-right: auto;
 
-@media only screen and (max-width: 600px) {
-  .sect{
-      padding-left: 0;
-      margin: 100px;
-  }
+border: 3px solid white;
+background-color: transparent;
+border-radius: 20px;
+width: 500px;
+height: 50px;
+
+transition: 2s;
+}
+a{
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+button:hover{
+  width:555px;
+  transition: 0.5s;
 }
     </style>
     </head>
 <body>
 
-    <h1> Projects: </h1>
+<h1> Projects: </h1>
 
-<section class="sect">
-
-    <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-image">
-              <img src="./Geforce/blog_img.jpg">
-              <span class="card-title">Geforce Shop</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red" href="./Geforce/gfhome.html"><i class="material-icons">+</i></a>
-            </div>
-            <div class="card-content">
-              <p>Click The Plus Sign To Check Out My First I Ever Made With HTML/CSS and Javascript</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-
-</section>
+<button><a href="./Geforce/gfhome.html"> Geforce Shop </a></button>
+<br/>
+<button><a href="./BankSite/index.html"> Work In Proggress </a></button>
 
 </body>
 </html>
