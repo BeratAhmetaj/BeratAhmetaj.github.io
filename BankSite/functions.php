@@ -1,23 +1,21 @@
 <?php
 
+//Login Check
 function checkLogin($username, $pass){
 include "dbinfo.php";
 
 $hash_sql = "SELECT Pass FROM users WHERE Username = '$username' ";
-
 $result = mysqli_query($connect, $hash_sql);
-
 $row = mysqli_fetch_assoc($result);
 
 $verify = password_verify($pass,$row["Pass"]);
-
-if($verify) {
+ if($verify) {
     echo"welcome";
-} else { echo"hashing password problem, contact site owner for info"; }
+  } else { echo"hashing password problem, contact site owner for info"; }
 }
 
 
-
+//Password Match Check
 function passwordCheck($pass, $passRepeat){
     if ($pass !== $passRepeat) {
         $result=true;  
@@ -29,6 +27,7 @@ function passwordCheck($pass, $passRepeat){
     return $result;
 }
 
+//Username Taken 
 function usernameTaken($username, $connect){
     $sql = "SELECT * FROM users WHERE Username = '$username';";
 
@@ -42,6 +41,7 @@ function usernameTaken($username, $connect){
 
 }
 
+//Creating user
 function createUser($username,$pass,$email){
     include "dbinfo.php";
 $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
@@ -51,7 +51,4 @@ $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
     $result = mysqli_query($connect, $sql);
     
 }  
-
-
-
 ?>

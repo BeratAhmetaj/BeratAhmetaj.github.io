@@ -10,17 +10,18 @@ if (isset($_POST["submit"])) {
     require_once 'dbinfo.php';    
     require_once 'functions.php';
 
-    
+    //Password Repeat Check
     if (passwordCheck($pass, $passRepeat) === true){
         header("Location: ./login.php?error=passmatch");
     exit();
     }
-
+    //Username Taken Check
     if (usernameTaken($username, $connect) === true){
         header("Location: ./login.php?error=usernametaken");
     exit();
-     }    
-    
+     }
+         
+    //Create User in database
     createUser($username,$pass,$email);    
 
 } else {

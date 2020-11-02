@@ -160,6 +160,7 @@
       <br />
 
       <?php 
+      // Error Handling For Login
       if (isset($_GET["error"])) 
         {
         if($_GET["error"] == "wronglogin") 
@@ -197,6 +198,7 @@
       <br />
       <p> Register</p>
 <?php
+//Error Handling For Registering
 if (isset($_GET["error"])) {
 if ($_GET["error"] == "passmatch") {
   echo"<h2> Passwords Dont Match </h2>";
