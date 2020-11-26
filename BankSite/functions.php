@@ -10,8 +10,10 @@ $row = mysqli_fetch_assoc($result);
 
 $verify = password_verify($pass,$row["Pass"]);
  if($verify) {
-    echo"welcome";
-  } else { echo"hashing password problem, contact site owner for info"; }
+
+    header("Location: ./Dashboard/main_hub.html ");
+
+  } else { header("Location: ./login.php?error=wrongpass");}
 }
 
 
@@ -49,6 +51,16 @@ $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
     $sql = "INSERT INTO `users` (`Id`, `Email`, `Pass`, `Username`) VALUES (NULL, '$email', '$hashedpass', '$username')";
 
     $result = mysqli_query($connect, $sql);
-    
-}  
+
+
+} 
+//Adding the user on the Money Table
+function createMoney($username){
+    include "dbinfo.php";
+
+    $sql = "INSERT INTO `money` (`Username`, `coins`, `num_transaction`) VALUES ('$username', NULL, NULL);";
+
+    $result = mysqli_query($connect, $sql);
+} 
+
 ?>

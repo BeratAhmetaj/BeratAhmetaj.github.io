@@ -153,7 +153,7 @@
   <div class="center">
     <img class="logo" src="./img/moneytreelogo_00000.png">
     <h1>Grow Money Now.</h1>
-    <form class="login" action="login_action.php" method="post">
+    <form class="login" action="./login_action.php" method="post">
       <br />
 
       <p> Login</p>
@@ -170,6 +170,9 @@
         else if ($_GET["error"] == "smtmfailed") 
         {
           echo"<h2> Statement Failed </h2>";
+        }
+        else if ($_GET["error"] == "wrongpass") {
+          echo"<h2>Wrong Login.</h2>";
         }
       }
       ?>
@@ -194,7 +197,7 @@
   <br />
   <br />
   <div class="center">
-    <form class="register" action="register_action.php" method="post">
+    <form class="register" action="./register_action.php" method="post">
       <br />
       <p> Register</p>
 <?php

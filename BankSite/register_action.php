@@ -22,7 +22,10 @@ if (isset($_POST["submit"])) {
      }
          
     //Create User in database
-    createUser($username,$pass,$email);    
+    createUser($username,$pass,$email);
+    createMoney($username);
+
+    header("Location: ./Dashboard/new_registered_user.html ");
 
 } else {
     header("Location: ./login.php?error=nicetry");
