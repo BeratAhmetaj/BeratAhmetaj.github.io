@@ -2,6 +2,13 @@
 
 if (isset($_POST["submit"])) {
     
+    //Session Start
+    session_start();
+    //Putting Info Into Session to use front-end and in functions later
+$_SESSION['username'] = $_POST["username"];
+$_SESSION['pass'] = $_POST["pass"];
+
+//Getting POST info to use in functions for SQL
     $username = $_POST["username"];
     $pass = $_POST["pass"];
     $email = $_POST["email"];
@@ -24,8 +31,14 @@ if (isset($_POST["submit"])) {
     //Create User in database
     createUser($username,$pass,$email);
     createMoney($username);
-
-    header("Location: ./Dashboard/new_registered_user.html ");
+    
+    //Cookie
+    $cookie_name = "MoneyTreeUser";
+    $cookie_value = $username;
+    setcookie($cookie_name, $cookie_value, time() + (86400), "/"); // 86400 = 1 day
+   
+    //Location
+    header("Location: ./Dashboard/new_registered_user.php ");
 
 } else {
     header("Location: ./login.php?error=nicetry");

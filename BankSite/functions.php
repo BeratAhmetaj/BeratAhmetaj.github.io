@@ -23,7 +23,6 @@ function passwordCheck($pass, $passRepeat){
         $result=true;  
     }
     else {
-        
         $result=false;
     }
     return $result;
@@ -36,11 +35,9 @@ function usernameTaken($username, $connect){
     $result = mysqli_query($connect,$sql);
 
     if(mysqli_num_rows($result)) {
-        return true;
-    } else { return false;
-        
-     }
-
+        return true;}
+    else { 
+        return false;}
 }
 
 //Creating user
@@ -52,9 +49,8 @@ $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
 
     $result = mysqli_query($connect, $sql);
 
-
 } 
-//Adding the user on the Money Table
+//Adding the user on the Money Table with null coins and null transactions
 function createMoney($username){
     include "dbinfo.php";
 
