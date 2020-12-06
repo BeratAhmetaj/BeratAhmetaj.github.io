@@ -32,10 +32,6 @@ $_SESSION['pass'] = $_POST["pass"];
     createUser($username,$pass,$email);
     createMoney($username);
     
-    //Cookie
-    $cookie_name = "MoneyTreeUser";
-    $cookie_value = $username;
-    setcookie($cookie_name, $cookie_value, time() + (86400), "/"); // 86400 = 1 day
    
     //Location
     header("Location: ./Dashboard/new_registered_user.php ");

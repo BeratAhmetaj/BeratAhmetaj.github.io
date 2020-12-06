@@ -1,21 +1,20 @@
 <?php
-
-//THIS WHOLE CODE IS COPY PASTED, REWORK
+session_start();
 
 
 if (isset($_POST["submit"])) {
     
-    $username = $_POST["username"];
-    $pass = $_POST["pass"];
-
+    $fullname = $_POST["name"];
+    $adress = $_POST["Adresa"];
+    $embg = $_POST["EMBG"];
+    
 require_once 'dbinfo.php';    
 require_once 'functions.php';
 
-$checked = checkLogin($username,$pass);
-
+BasicUserInfo($fullname,$adress,$embg);
 
 } else {
-    header("Location: ./login.php?error=nicetry");
+    header("Location: ./new_registered_user.php?error=nicetry");
 }
 
 ?>

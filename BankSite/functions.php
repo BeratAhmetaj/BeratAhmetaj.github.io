@@ -1,5 +1,6 @@
 <?php
 
+
 //Login Check
 function checkLogin($username, $pass){
 include "dbinfo.php";
@@ -59,4 +60,17 @@ function createMoney($username){
     $result = mysqli_query($connect, $sql);
 } 
 
+//Getting Basic Infro From New Registered User
+function BasicUserInfo($fullname,$adress,$embg){
+    include "dbinfo.php";
+    $fullname=trim($fullname);
+    $fullname=strtolower($fullname);
+
+    //Using Session username and making it into "ssusername"
+    $ssusername = $_SESSION['username'];
+
+    $sql = "UPDATE `users` SET `EMBG` = '$embg', `NameSurname` = '$fullname', `LivingAdress` = '$adress' WHERE `users`.`Username` = '$ssusername';";
+    $result = mysqli_query($connect, $sql);
+
+}
 ?>
