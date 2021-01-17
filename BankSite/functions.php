@@ -1,24 +1,17 @@
 <?php
 
-
-//Login Check
-function checkLogin($username, $pass){
-include "dbinfo.php";
-
-$hash_sql = "SELECT Pass FROM users WHERE Username = '$username' ";
-$result = mysqli_query($connect, $hash_sql);
-$row = mysqli_fetch_assoc($result);
-
-$verify = password_verify($pass,$row["Pass"]);
- if($verify) {
-
-    header("Location: ./Dashboard/main_hub.html ");
-
-  } else { header("Location: ./login.php?error=wrongpass");}
+function IsEmpty($username, $pass, $email, $passRepeat) {
+$result;
+if (empty($username) || empty($pass) || empty($email) || empty($passRepeat) ) {
+$result = true;
+}
+else
+{
+$result=false;
+}
+return $result;
 }
 
-
-//Password Match Check
 function passwordCheck($pass, $passRepeat){
     if ($pass !== $passRepeat) {
         $result=true;  
@@ -29,48 +22,65 @@ function passwordCheck($pass, $passRepeat){
     return $result;
 }
 
-//Username Taken 
-function usernameTaken($username, $connect){
-    $sql = "SELECT * FROM users WHERE Username = '$username';";
+function usernameTaken($username, $connect, $email){
+    // sql we want to inject
+    $sql = "SELECT * FROM users WHERE Username = ? OR Email = ?;";
 
-    $result = mysqli_query($connect,$sql);
+    //we make statement and we initialize it with connect
+    $stmt = mysqli_stmt_init($connect);
 
-    if(mysqli_num_rows($result)) {
-        return true;}
-    else { 
-        return false;}
-}
+    //if statemant is not prepared to take the statement and sql than we go to header location
+    if( !mysqli_stmt_prepare($smtm, $sql)){
+        header('location : login.html?error=SQL_Failed');
+        exit();
+    }
 
-//Creating user
-function createUser($username,$pass,$email){
-    include "dbinfo.php";
-$hashedpass = password_hash($pass,PASSWORD_DEFAULT);
+    //mysqli statemnt bind parameteres (we bind the statement, we type an s for every string we would like to attach, in this case 2 )
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    //we execute the statement with statement in parameter
+    mysqli_stmt_execute($stmt);
 
-    $sql = "INSERT INTO `users` (`Id`, `Email`, `Pass`, `Username`) VALUES (NULL, '$email', '$hashedpass', '$username')";
+    //we make the result into a variable
+    $resultData = mysqli_stmt_get_result($stmt);
 
-    $result = mysqli_query($connect, $sql);
 
-} 
-//Adding the user on the Money Table with null coins and null transactions
-function createMoney($username){
-    include "dbinfo.php";
-
-    $sql = "INSERT INTO `money` (`Username`, `coins`, `num_transaction`) VALUES ('$username', NULL, NULL);";
-
-    $result = mysqli_query($connect, $sql);
-} 
-
-//Getting Basic Infro From New Registered User
-function BasicUserInfo($fullname,$adress,$embg){
-    include "dbinfo.php";
-    $fullname=trim($fullname);
-    $fullname=strtolower($fullname);
-
-    //Using Session username and making it into "ssusername"
-    $ssusername = $_SESSION['username'];
-
-    $sql = "UPDATE `users` SET `EMBG` = '$embg', `NameSurname` = '$fullname', `LivingAdress` = '$adress' WHERE `users`.`Username` = '$ssusername';";
-    $result = mysqli_query($connect, $sql);
+    //we make a varialble "row" to store the results we fetch
+    if($row = mysqli_fetch_assoc($resultData)){
+    //if row is true, than we return row, meaning we return true
+     return $row;
+      } else {
+    //else false
+        $result=false;
+        return $result;
+    }
+    //we than close statement for security reasons ig
+    mysqli_stmt_close($stmt);
 
 }
+
+function createUser ($connect, $username, $pass, $email) {
+    $sql = "INSERT INTO users (Email,Password,Username) VALUES (?, ?, ?);";
+    
+    $stmt = mysqli_stmt_init($connect);
+
+    if (!mysqli_stmt_prepare($stmt,$sql)) {
+        header('location : login.html?error=SQL_Failed');
+     exit();
+    }
+
+$hashedpassword = password_hash($pass, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sss", $email, $hashedpassword, $username);
+    mysqli_stmt_execute($smtm);
+    mysqli_stmt_close($stmt);
+
+  header('location : login.html?error=none');
+     exit();
+}
+
+
+
+
+
+
 ?>
