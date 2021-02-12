@@ -13,8 +13,9 @@ require_once 'functions.php';
 
 BasicUserInfo($fullname,$adress,$embg);
 
+header("Location: Dashboard/frame_BI.php?error=success");
 } else {
-    header("Location: ./new_registered_user.php?error=nicetry");
+    header("Location: Dashboard/frame_BI.php?error=error");
 }
 
 ?>

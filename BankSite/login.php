@@ -37,20 +37,26 @@
       width: 32vh;
       padding-left: 25px;
       border: 2px solid rgb(168, 168, 168);
-      border-radius: 30px;
+      border-top:0px;
+      border-right:0px;
+      border-left:0px;
+      border-radius: 5px;
       margin-top: 15px;
-      transition: 0.5s;
+      transition: 0.3s;
     }
 
     .inp:hover {
       width: 34vh;
-      border: 2px solid #7D3CF8;
-      transition: 0.5s;
+      border: 5px solid #7D3CF8;
+      border-top:0px;
+      border-right:0px;
+      border-left:0px;
+      transition: 0.3s;
     }
 
     .inp:hover>i {
       color: #7D3CF8;
-      transition: 0.5s;
+      transition: 0.3s;
     }
 
     hr {
@@ -69,7 +75,7 @@
       margin-left: auto;
       margin-right: auto;
       background-color: white;
-      box-shadow: 1px 3px #7D3CF8;
+
     }
 
     button {
@@ -125,7 +131,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      opacity: 90%;
+      opacity: 40%;
     }
 
     @media only screen and (max-width: 1000px) {
@@ -136,6 +142,7 @@
       width:300px;
     }
     }
+   
   </style>
 </head>
 
@@ -150,9 +157,12 @@
       console.log('particles.js loaded.');
     });
   </script>
+  
   <div class="center">
     <img class="logo" src="./img/moneytreelogo_00000.png">
     <h1>Grow Money Now.</h1>
+
+
     <form class="login" action="./login_action.php" method="post">
       <br />
 
@@ -172,7 +182,7 @@
           echo"<h2> Statement Failed </h2>";
         }
         else if ($_GET["error"] == "wrongpass") {
-          echo"<h2>Wrong Login.</h2>";
+          echo"<h2>Wrong Login. Try Again</h2>";
         }
       }
       ?>
@@ -208,7 +218,7 @@ if ($_GET["error"] == "passmatch") {
 } else if ($_GET["error"] == "usernametaken"){
   echo"<h2>Username Taken, Try Another One</h2>";
 } else if ($_GET["error"] == "nicetry"){
-  echo"<h2>Thats Now How The Internet Works Buddy.</h2>";
+  echo"<h2>Thats Not How The Internet Works Buddy.</h2>";
 }
 }
 ?>
@@ -240,6 +250,7 @@ if ($_GET["error"] == "passmatch") {
         </div>
         <br /><br />
         <button type="submit" name="submit">Register</button>
+
 </body>
 
 </html>

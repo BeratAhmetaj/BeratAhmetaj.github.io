@@ -2,6 +2,13 @@
 
 if (isset($_POST["submit"])) {
     
+    //Session Start
+    session_start();
+    //Putting Info Into Session to use front-end and in functions later
+$_SESSION['username'] = $_POST["username"];
+$_SESSION['pass'] = $_POST["pass"];
+
+//Getting POST info to use in functions for SQL
     $username = $_POST["username"];
     $pass = $_POST["pass"];
     $email = $_POST["email"];
@@ -10,25 +17,27 @@ if (isset($_POST["submit"])) {
     require_once 'dbinfo.php';    
     require_once 'functions.php';
 
-    if (IsEmpty($username, $pass, $email, $passRepeat) !== false){
-    header('location : login.html?error=empty');
+    //Password Repeat Check
+    if (passwordCheck($pass, $passRepeat) === true){
+        header("Location: ./login.php?error=passmatch");
     exit();
     }
-
-    if (passwordCheck($pass, $passRepeat) !== false){
-    header('location : login.html?error=passCheck');
+    //Username Taken Check
+    if (usernameTaken($username, $connect) === true){
+        header("Location: ./login.php?error=usernametaken");
     exit();
-    }
-
-    if (usernameTaken($username, $connect, $email) !== false){
-    header('location : login.html?error=UsernameTaken');
-    exit();
-     }    
-    
-    createUser ($connect, $username, $pass, $email);
+     }
+         
+    //Create User in database
+    createUser($username,$pass,$email);
+    createMoney($username);
+    StarterPack($username);
+   
+    //Location
+    header("Location: ./Dashboard/Privacy_settings.php ");
 
 } else {
-    echo"You son of a bitch, dont try to hack my site.";
+    header("Location: ./login.php?error=nicetry");
 }
 
 ?>
