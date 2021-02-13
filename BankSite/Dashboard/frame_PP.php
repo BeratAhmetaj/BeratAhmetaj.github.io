@@ -278,9 +278,6 @@ input[type=number] {
 <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
 <p>When you register for an Account, your password is automatically encrypted on the database, we encrypt the most valuable information including Credit Card numbers and coin tokens.</p>
 
-<h2>Terminate Account</h2>
-<p>If you wish for your account to be terminated, click the button below, by clicking the button you agree to deleting all your infromations stored on the websites database, excluding transaction information. We use your undeleted transaction data to provide our other users their own data if you have deposited tokens into their account, or if they have deposited into yours.</p>
-<button onclick=AskAgain(); >Terminate</button>
 
 <script>
 function AskAgain(){

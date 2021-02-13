@@ -1,4 +1,6 @@
 <?php
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Login Check
 function checkLogin($username, $pass){
 include "dbinfo.php";
@@ -16,7 +18,8 @@ $verify = password_verify($pass,$row["Pass"]);
   } else { header("Location: ./login.php?error=wrongpass");}
 }
 
-
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Password Match Check
 function passwordCheck($pass, $passRepeat){
     if ($pass !== $passRepeat) {
@@ -28,6 +31,8 @@ function passwordCheck($pass, $passRepeat){
     return $result;
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Username Taken 
 function usernameTaken($username, $connect){
     $sql = "SELECT * FROM usersdata WHERE Username = '$username';";
@@ -38,6 +43,8 @@ function usernameTaken($username, $connect){
         return false;}
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Creating user
 function createUser($username,$pass,$email){
     include "dbinfo.php";
@@ -46,6 +53,8 @@ $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
     $result = mysqli_query($connect, $sql);
 } 
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Adding the user on the moneydata Table with null coins and null transactions
 function createmoney($username){
     include "dbinfo.php";
@@ -53,6 +62,8 @@ function createmoney($username){
     $result = mysqli_query($connect, $sql);
 } 
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Getting Basic Infro From New Registered User
 function BasicUserInfo($fullname,$adress,$embg){
     include "dbinfo.php";
@@ -67,6 +78,8 @@ function BasicUserInfo($fullname,$adress,$embg){
 
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Passes Credit Card Info Into The DB
 function CreditInfo($CreditCard,$CVV,$Expiry){
     include "dbinfo.php";
@@ -78,6 +91,8 @@ function CreditInfo($CreditCard,$CVV,$Expiry){
 
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Gets Data from the usersdata Table (excluding Credit Card Info)
 function getname($username){
     include "dbinfo.php";
@@ -106,6 +121,8 @@ function getname($username){
     return array($embg, $namesurname, $livingadress, $email, $id);
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Gets Data From The Coins Table
 function getcoins($username){
     include "dbinfo.php";
@@ -119,7 +136,8 @@ function getcoins($username){
     return array($coins, $num_transaction);
 }
 
-
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Terminates usersdata Account (Excluding Transaction Data)
 function DeleteAccount($username){
 include "dbinfo.php";
@@ -130,6 +148,8 @@ $sql2 = "DELETE FROM usersdata WHERE username='$username';";
 $result2 = mysqli_query($connect, $sql2);
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Checks if There is Enough moneydata on the usersdata account before depositing
 function  Checkmoney($username,$Amount){
     include "dbinfo.php";
@@ -145,9 +165,16 @@ function  Checkmoney($username,$Amount){
     }
 }
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Deposits usersdata moneydata into another account
-//removes amount from his own account
-//Adds a transaction on the transaction list
+//Steps:
+//Checks If ToUser Exists At All
+//Deposits usersdata moneydata into another account
+//Get Transaction Number on user
+//Add Transaction On User Who Sent It
+//Removes Amount From Senders Account
+//Adds All Transaction Data To Transaction History List
 function Deposit($username,$ToUser,$Smetka,$Amount,$Reason){
 include "dbinfo.php";
 
@@ -159,8 +186,6 @@ if(mysqli_num_rows($resultx)) {
 }else { header("Location: ./Deposit.php?error=AccountNotExist");
     return 0; }
 
-
-
 //Deposits usersdata moneydata into another account
 $sql1="SELECT * FROM `moneydata` WHERE Username = '$ToUser';";
 $result1=mysqli_query($connect,$sql1);
@@ -171,6 +196,17 @@ $ToDeposit=$Tocoins+$Amount;
 
 $sql2="UPDATE `moneydata` SET `coins` = '$ToDeposit' WHERE `Username` = '$ToUser' ;";
 $result2=mysqli_query($connect,$sql2);
+
+//Get Transaction Number on user
+$sql6="SELECT * FROM `moneydata` WHERE Username = '$username' ;";
+$result6=mysqli_query($connect,$sql6);
+$row6=mysqli_fetch_assoc($result6);
+$MyTransaction=$row6["num_transaction"];
+
+//Add Transaction On User Who Sent It
+$MyTransactionF=$MyTransaction+1;
+$sql5="UPDATE `moneydata` SET `num_transaction` = '$MyTransactionF' WHERE `Username` = '$username' ;";
+$result5=mysqli_query($connect,$sql5);
 
 
 //Removes Amount From Senders Account
@@ -185,8 +221,13 @@ $sql4="UPDATE `moneydata` SET `coins` = '$TotalUsermoneydata' WHERE `Username` =
 $result4=mysqli_query($connect,$sql4);
 
 header("Location: ./Deposit.php?error=success");
-}
 
+//Adds All Transaction Data To Transaction History List
+$sqltransaction="INSERT INTO `transactionsdata` (`transaction_id`, `FromUser`, `ToUser`, `Amount`, `Smetka`, `Reason`, `Date` ) VALUES (NULL, '$username', '$ToUser', '$Amount', '$Smetka', '$Reason', NULL ); ";
+$resulttransaction=mysqli_query($connect,$sqltransaction);
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //Get Credit Card Details To Use As Front-End For Depositing
 function GetCard($username){
 include "dbinfo.php";
@@ -202,7 +243,9 @@ $Expiry=$row["Expiry"];
 
 return array($NameSurname,$CreditCard,$CVV,$Expiry);
 }
-
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//Giving a new user 100 coins and 0 transactions
 function StarterPack($username){
     include "dbinfo.php";
     $sql = "UPDATE `moneydata` SET `coins` = '100' WHERE `Username` = '$username'; ";
@@ -211,6 +254,21 @@ function StarterPack($username){
     $sql2 = "UPDATE `moneydata` SET `num_transaction` = '0' WHERE `Username` = '$username'; ";
     $result2 = mysqli_query($connect,$sql2);
 }
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//Getting Number Of Transactions from user
+function CountTransactions($username){
+    include "dbinfo.php";
+$sql="SELECT `num_transaction` FROM `moneydata` WHERE `Username` ='$username';";
+$result=mysqli_query($connect,$sql);
+$row=mysqli_fetch_assoc($result);
 
+$NumTrans=$row["num_transaction"];
+
+return $NumTrans;
+}
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 ?>
 

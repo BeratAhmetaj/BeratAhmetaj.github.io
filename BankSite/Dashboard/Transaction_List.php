@@ -9,6 +9,8 @@ $username = $_SESSION['username'];
 include "../functions.php";
 //We put the returned array from the func. into $result
 $coinres= getcoins($username);
+
+$count=CountTransactions($username);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,6 +109,9 @@ if it's not present, don't show loader */
     .first-nav-element {
         padding-left: 30px;
     }
+    h3{
+      margin-top:10px;
+    }
 
     h1 {
         color:white:
@@ -139,14 +144,19 @@ body {
 
 /* Float four columns side by side */
 .column {
-  float: left;
+  display: flex;
+        justify-content: center;
   width: 25%;
   padding: 0 10px;
+
   
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  
+  text-align: center;
+  margin: 0 -5px;}
 
 /* Clear floats after the columns */
 .row:after {
@@ -156,25 +166,45 @@ body {
 }
 
 /* Responsive columns */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 10000px) {
   .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;
   }
+  .card{
+margin-left: 0px;
+margin-right: 25px;
+  }
 }
 
 /* Style the counter cards */
-.card {
+.card{
+margin-left: 30px;
+  text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  border-radius:20px;
+  height: 100%;
+  border-radius:5px;
   text-align: center;
   background-color: #f1f1f1;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #7D3CF8;
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
 }
-    
+@keyframes text {
+  from {font-size:  0px; border-radius: 5px;}
+  to {font-size: 15px; border-radius: 20px; }
+}
 
+.card h3{
+  display: none;
+  animation-duration: 0.3s;
+}
+.card:active h3{
+  display: block;
+  animation-name: text;
+  animation-duration: 0.3s;
+}
 
 .topnav {
   overflow: hidden;
@@ -291,7 +321,7 @@ body {
     border: 1px solid;
         color: #FCBF4C;
         background-color: #7D3CF8;
-        padding: 10px 50px 10px 50px;
+        padding: 5px 15px 5px 15px;
         border-radius: 20px;
         text-decoration: none;
         color: #FCBF4C;
@@ -304,9 +334,15 @@ body {
     }
     a{
         text-decoration: none;
-        color:white;
+        color:black;
+        font-size: 15px;
     }
-  
+    .order{
+      text-decoration: none;
+      border:none;
+      background-color: transparent;
+  }
+
 </style>
 
 <body>
@@ -349,7 +385,8 @@ body {
   </div> </li>
 
   <li> <div class="dropdown">
-    <button class="dropbtn"><?php 
+    <button class="dropbtn">
+    <?php 
   echo "$username";
   ?>
       <i class="fa fa-caret-down"></i>
@@ -359,52 +396,45 @@ body {
       <a href="../login.php">Log Out</a>
     </div> 
   </div> </li>
-          
             <li class="signup"> <a class="signup" href="./login.php">My Wallet: <?php echo $coinres[0]; ?> Coins </a> </li>
         </ul>
     </div>
-    
   <div class="Hub"> 
-  
-  <h1> Quick Board </h1>
-<?php 
-  echo "<p> Welcome To Your Main E-Banking Hub $username </p>";
-  ?>
-<div class="row">
+  <h1> Transaction History </h1>
+  <h2 style="font-size:15px">Total Transactions: <?php echo $count; ?> </h2>
+  <p>Order by:<button class="order"><a>Newest</a></button> <button class="order"><a>Amount</a></button> <button class="order"><a>Loan</a></button></p> 
+<br/>
+  <div class="row">
   <div class="column">
-    <div class="card">
-      <h3>Deposit</h3>
-      <p>Deposit Coins To Another User</p>
-      <button class="card_btn"><a href="Deposit.php"> Deposit Now </a></button>
-    </div>
-  </div>
 
-  <div class="column">
-    <div class="card">
-      <h3>View Transactions</h3>
-      <p>View All Your Transactions History</p>
-      <button class="card_btn"><a href="Transaction_List.php"> View Transactions </a></button>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3> Loan Coins</h3>
-      <p>Pay It Afterwards With Or Without An Interest Rate</p>
-      <button class="card_btn"> Loan Now </button>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3>Calculate Currency</h3>
-      <p>Convert Your Coins To Other Currencies</p>
-      <button class="card_btn"> Use Now </button>
-    </div>
-  </div>
-</div>
-</div>
+
+
+
+
+
+  <br/>
+<div class="card">
+  <h1 style="color: white; font-size: 20px;">Deposited To berat</h1>
+  <hr/>
+  <h1 style="color: white; font-size: 35px;">Amount 50</h1>
+  <h3 style="color: white; font-size: 15px; ">Bill:</h3>
+  <h3 style="color: white; font-size: 15px; ">Reason:</h3> 
+  <h3 style="color: white; font-size: 15px; ">Date:</h3> 
+ <p style="color: white; font-size: 10px; float: left;">Transaction ID:</p>  
+<br/>
 </div>
 
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

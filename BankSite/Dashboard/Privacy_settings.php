@@ -27,10 +27,13 @@ $coinres= getcoins($username);
     }
 
     body {
-        height: 100%;
+
         overflow-x: hidden;
         margin: 0;
         background-color: #F5F7FA;
+        background-image: linear-gradient(to right top, #a2beeb, #8ecfee, #8edde5, #a4e7d5, #c7eec7);
+        background-repeat: no-repeat;
+  height: 1000px;
     }
 
     ul {
@@ -150,6 +153,8 @@ body {
   border-radius:20px;
   text-align: center;
   background-color: #f1f1f1;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius:20px;
 }
     
 
@@ -261,6 +266,8 @@ body {
     margin:50px;
     background-color: #FFFFFF;
     padding:50px 20px 50px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius:20px;
 }
 
 .card_btn{
