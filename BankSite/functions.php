@@ -292,5 +292,24 @@ function GetTransaction($username,$integer){
     
     return array($transactionid,$ToUser,$Amount,$Smetka,$Reason,$Date);
 }
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//Returns only one custom deposit
+function GetCustomDeposit($ToUser,$username){
+include "dbinfo.php";
+$sql="SELECT * FROM `transactionsdata` WHERE `FromUser` = '$username' AND `ToUser` = '$ToUser' ;";
+$result=mysqli_query($connect,$sql);
+$row=mysqli_fetch_assoc($result);
+
+    $transactionid=$row["transaction_id"];
+    $ToUser=$row["ToUser"];
+    $Amount=$row["Amount"];
+    $Smetka=$row["Smetka"];
+    $Reason=$row["Reason"];
+    $Date=$row["Date"];
+    
+    return array($transactionid,$ToUser,$Amount,$Smetka,$Reason,$Date);
+}
 ?>
 

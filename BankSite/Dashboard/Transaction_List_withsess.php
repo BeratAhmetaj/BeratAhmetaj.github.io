@@ -10,7 +10,12 @@ include "../functions.php";
 //We put the returned array from the func. into $result
 $coinres= getcoins($username);
 
-$count=CountTransactions($username);
+$transactionid=$_SESSION['transaction_id'];
+$ToUser=$_SESSION['ToUser'] ;
+$Amount=$_SESSION['Amount'] ;
+$Smetka=$_SESSION['Smetka'] ;
+$Reason=$_SESSION['Reason'] ;
+$Date=$_SESSION['Date'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -312,6 +317,7 @@ margin-left: 30px;
 }
 
 .Hub{
+  text-align:center;
     margin:50px;
     background-color: #FFFFFF;
     padding:50px 20px 50px 20px;
@@ -341,7 +347,7 @@ margin-left: 30px;
     }
     .order{
       text-decoration: none;
-      border:none;
+      border:solid #7D3CF8 1px;
       background-color: transparent;
   }
 
@@ -402,10 +408,9 @@ margin-left: 30px;
         </ul>
     </div>
   <div class="Hub"> 
-  <h1>My Deposit History </h1>
-  <h2 style="font-size:15px">Total Transactions: <?php echo $count; ?> </h2>
-  
-  <p>Order by:<button class="order"><a href="Transaction_List.php">Newest</a></button> <button class="order"><a href="Transaction_List_OrderOldest.php">Oldest</a></button></p> 
+  <h1>Custom Search Deposit</h1>
+  <h2 style="font-size:15px">Deposit Search For: <?php echo $ToUser; ?> </h2>
+  <p><button class="order"><a href="Transaction_List.php">Go Back</a></button> 
 <br/>
 <!-- SEARCH FOR DEPOSITS -->
 <style>
@@ -495,22 +500,6 @@ margin-left: 30px;
     }
   </style>
   <form action="./Search_Transaction.php" method="post">
-  <div class="center">
-  <?php 
-      // Error Handling For Login
-      if (isset($_GET["error"])) 
-        {
-        if($_GET["error"] == "UserNotExist") 
-        {
-        echo"<h2> Deposit Data About User Doesent Exist. </h2>";
-        } 
-        else
-        {
-          echo"<h2> Statement Failed </h2>";
-        }
-      }
-      ?>
-      </div>
 <div class="inp">
           <i class="fas fa-user"></i>
           <input type="text" placeholder="Search Deposits" name="ToUser" required>
@@ -522,43 +511,23 @@ margin-left: 30px;
   <div class="column">
 
 <div class="Newest">
-<?php 
-//$count is number of transactions
-for ($integer=1; $integer<=$count;$integer++)
-{
-  $trans=GetTransaction($username,$integer);
-  echo ' <br/>
-  <div class="card">
-    <h1 style="color: white; font-size: 20px;">Deposited To '.$trans[1].' </h1>
-    <hr/>
-    <h1 style="color: white; font-size: 35px;">Amount '.$trans[2].' coins </h1>
-    <h3 style="color: white; font-size: 15px; ">Bill:'.$trans[3].'</h3>
-    <h3 style="color: white; font-size: 15px; ">Reason:'.$trans[4].'</h3> 
-    <h3 style="color: white; font-size: 15px; ">Date:'.$trans[5].'</h3> 
-   <p style="color: white; font-size: 10px; float: left;">Transaction ID:'.$trans[0].'</p>  
-  <br/>
-  </div>
-  ';
-}
-?>
-
 </div>
 
 
 </div>
-<!-- TEMPLATE CODE THAT GETS ECHOED AS TRANSACTION 
+<!--Order -- ($transactionid,$ToUser,$Amount,$Smetka,$Reason,$Date);-->
   <br/>
 <div class="card">
-  <h1 style="color: white; font-size: 20px;">Deposited To berat</h1>
+  <h1 style="color: white; font-size: 20px;">Deposited To <?php echo $ToUser ?></h1>
   <hr/>
-  <h1 style="color: white; font-size: 35px;">Amount 50</h1>
-  <h3 style="color: white; font-size: 15px; ">Bill:</h3>
-  <h3 style="color: white; font-size: 15px; ">Reason:</h3> 
-  <h3 style="color: white; font-size: 15px; ">Date:</h3> 
- <p style="color: white; font-size: 10px; float: left;">Transaction ID:</p>  
+  <h1 style="color: white; font-size: 35px;">Amount <?php echo $Amount ?> Coins</h1>
+  <h3 style="color: white; font-size: 15px; ">Bill:<?php echo $Smetka ?></h3>
+  <h3 style="color: white; font-size: 15px; ">Reason:<?php echo $Reason ?></h3> 
+  <h3 style="color: white; font-size: 15px; ">Date:<?php echo $Date ?></h3> 
+ <p style="color: white; font-size: 10px; float: left;">Transaction ID:<?php echo $transactionid ?></p>  
 <br/>
 </div>
--->
+
 </div>
 </div>
 </div>

@@ -406,6 +406,117 @@ margin-left: 30px;
   <h2 style="font-size:15px">Total Transactions: <?php echo $count; ?> </h2>
   <p>Order by:<button class="order"><a href="Transaction_List.php">Newest</a></button> <button class="order"><a href="Transaction_List_OrderOldest.php">Oldest</a></button></p> 
 <br/>
+<!-- SEARCH FOR DEPOSITS -->
+<style>
+  input {
+      border: none;
+      padding: 10px;
+      font-size: 20px;
+      outline: 0;
+      width: auto;
+      z-index: 1;
+      background-color: transparent;
+    }
+
+    i {
+      font-size: 20px;
+    }
+
+    .inp {
+      z-index: 2;
+      width: 35vh;
+      padding-left: 30px;
+      border: 2px solid rgb(168, 168, 168);
+      border-top:0px;
+      border-right:0px;
+      border-left:0px;
+      border-radius: 5px;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    .inp:hover {
+      width: 37vh;
+      border: 5px solid #7D3CF8;
+      border-top:0px;
+      border-right:0px;
+      border-left:0px;
+      transition: 0.3s;
+    }
+
+    .inp:hover>i {
+      color: #7D3CF8;
+      transition: 0.3s;
+    }
+
+    hr {
+      width: 100px;
+
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .inp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: white;
+
+    }
+
+    button {
+      border: 2px solid rgb(168, 168, 168);
+      background-color: white;
+      border-radius: 5px;
+      font-size: 10px;
+      margin-right:15px;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      transition: 0.5s;
+      color: black;
+
+    }
+
+    button:hover {
+      background-color: #7D3CF8;
+      color: white;
+      transition: 0.5s;
+    }
+    button:hover a {
+      color: white;
+      transition: 0.5s;
+    }
+  </style>
+  <form action="./Search_Transaction.php" method="post">
+  <div class="center">
+  <?php 
+      // Error Handling For Login
+      if (isset($_GET["error"])) 
+        {
+        if($_GET["error"] == "UserNotExist") 
+        {
+        echo"<h2> Deposit Data About User Doesent Exist. </h2>";
+        } 
+        else
+        {
+          echo"<h2> Statement Failed </h2>";
+        }
+      }
+      ?>
+      </div>
+<div class="inp">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Search Deposits" name="ToUser" required>
+          <button type="submit" name="submit">Search</button>
+          <br />
+        </div>
+        </form>
   <div class="row">
   <div class="column">
 
