@@ -448,7 +448,7 @@ input[type=number] {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">View Transactions</a>
+      <a href="Transaction_List.php">View Transactions</a>
       <a href="Deposit.php">Deposit </a>
       <a href="#">Loan Coins</a>
     </div> 
@@ -459,7 +459,7 @@ input[type=number] {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">View Transactions</a>
+      <a href="Transaction_List.php">View Transactions</a>
       <a href="#">Calculate Currency</a>
       <a href="#">Charts</a>
     </div> 

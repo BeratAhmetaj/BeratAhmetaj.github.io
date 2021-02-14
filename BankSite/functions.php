@@ -223,7 +223,8 @@ $result4=mysqli_query($connect,$sql4);
 header("Location: ./Deposit.php?error=success");
 
 //Adds All Transaction Data To Transaction History List
-$sqltransaction="INSERT INTO `transactionsdata` (`transaction_id`, `FromUser`, `ToUser`, `Amount`, `Smetka`, `Reason`, `Date` ) VALUES (NULL, '$username', '$ToUser', '$Amount', '$Smetka', '$Reason', NULL ); ";
+
+$sqltransaction="INSERT INTO `transactionsdata` (`UsersTransaction`,`transaction_id`, `FromUser`, `ToUser`, `Amount`, `Smetka`, `Reason`, `Date` ) VALUES ('$MyTransactionF',NULL, '$username', '$ToUser', '$Amount', '$Smetka', '$Reason', NULL ); ";
 $resulttransaction=mysqli_query($connect,$sqltransaction);
 }
 ////////////////////////////////////////////////////////////
@@ -253,6 +254,10 @@ function StarterPack($username){
 
     $sql2 = "UPDATE `moneydata` SET `num_transaction` = '0' WHERE `Username` = '$username'; ";
     $result2 = mysqli_query($connect,$sql2);
+
+    $sql3 = "UPDATE `moneydata` SET `Loan_Count` = '0' WHERE `Username` = '$username'; ";
+    $result3 = mysqli_query($connect,$sql);
+
 }
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -261,14 +266,31 @@ function CountTransactions($username){
     include "dbinfo.php";
 $sql="SELECT `num_transaction` FROM `moneydata` WHERE `Username` ='$username';";
 $result=mysqli_query($connect,$sql);
-$row=mysqli_fetch_assoc($result);
+$row=mysqli_fetch_array($result);
 
 $NumTrans=$row["num_transaction"];
 
 return $NumTrans;
 }
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//Works with the PHP code on Transaction List Site to
+//Procedurally generate transaction lists based on the total count ($integer)
+//Which is incremented every time, it uses that incrementation to generate data
+function GetTransaction($username,$integer){
+    include "dbinfo.php";
+    $sql="SELECT * FROM `transactionsdata` WHERE `FromUser` = '$username' AND `UsersTransaction` = '$integer';";
+    $result=mysqli_query($connect,$sql);
+    $row=mysqli_fetch_assoc($result);
 
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
+    $transactionid=$row["transaction_id"];
+    $ToUser=$row["ToUser"];
+    $Amount=$row["Amount"];
+    $Smetka=$row["Smetka"];
+    $Reason=$row["Reason"];
+    $Date=$row["Date"];
+    
+    return array($transactionid,$ToUser,$Amount,$Smetka,$Reason,$Date);
+}
 ?>
 

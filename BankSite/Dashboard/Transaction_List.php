@@ -44,6 +44,7 @@ if it's not present, don't show loader */
 
 * {
         font-family: 'Kumbh Sans', sans-serif;
+        
     }
 
     body {
@@ -52,7 +53,8 @@ if it's not present, don't show loader */
         margin: 0;
         background-image: linear-gradient(to right top, #a2beeb, #8ecfee, #8edde5, #a4e7d5, #c7eec7);
         background-repeat: no-repeat;
-  height: 1000px;
+        height: 100%;
+  height: 3000px;
     }
 
     ul {
@@ -400,18 +402,39 @@ margin-left: 30px;
         </ul>
     </div>
   <div class="Hub"> 
-  <h1> Transaction History </h1>
+  <h1>My Deposit History </h1>
   <h2 style="font-size:15px">Total Transactions: <?php echo $count; ?> </h2>
-  <p>Order by:<button class="order"><a>Newest</a></button> <button class="order"><a>Amount</a></button> <button class="order"><a>Loan</a></button></p> 
+  <p>Order by:<button class="order"><a href="Transaction_List.php">Newest</a></button> <button class="order"><a href="Transaction_List_OrderOldest.php">Oldest</a></button></p> 
 <br/>
   <div class="row">
   <div class="column">
 
+<div class="Newest">
+<?php 
+//$count is number of transactions
+for ($integer=$count; $integer>0;$integer--)
+{
+  $trans=GetTransaction($username,$integer);
+  echo ' <br/>
+  <div class="card">
+    <h1 style="color: white; font-size: 20px;">Deposited To '.$trans[1].' </h1>
+    <hr/>
+    <h1 style="color: white; font-size: 35px;">Amount '.$trans[2].' coins </h1>
+    <h3 style="color: white; font-size: 15px; ">Bill:'.$trans[3].'</h3>
+    <h3 style="color: white; font-size: 15px; ">Reason:'.$trans[4].'</h3> 
+    <h3 style="color: white; font-size: 15px; ">Date:'.$trans[5].'</h3> 
+   <p style="color: white; font-size: 10px; float: left;">Transaction ID:'.$trans[0].'</p>  
+  <br/>
+  </div>
+  ';
+}
+?>
+
+</div>
 
 
-
-
-
+</div>
+<!-- TEMPLATE CODE THAT GETS ECHOED AS TRANSACTION 
   <br/>
 <div class="card">
   <h1 style="color: white; font-size: 20px;">Deposited To berat</h1>
@@ -423,14 +446,7 @@ margin-left: 30px;
  <p style="color: white; font-size: 10px; float: left;">Transaction ID:</p>  
 <br/>
 </div>
-
-
-
-
-
-
-
-
+-->
 </div>
 </div>
 </div>

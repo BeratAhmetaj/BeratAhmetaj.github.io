@@ -9,6 +9,8 @@ $username = $_SESSION['username'];
 include "../functions.php";
 //We put the returned array from the func. into $result
 $coinres= getcoins($username);
+
+$count=CountTransactions($username);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,19 +23,38 @@ $coinres= getcoins($username);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <style>
+  /* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader {   background-color:#7D3CF8; display: none;  }
+.js #loader {   background-color:#7D3CF8; display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+  background-color:#7D3CF8;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://i.imgur.com/33q9S4D.gif) center no-repeat #fff;
+}
+
+
 * {
         font-family: 'Kumbh Sans', sans-serif;
+        
     }
 
     body {
-
+        height: 100%;
         overflow-x: hidden;
         margin: 0;
-        background-color: #F5F7FA;
         background-image: linear-gradient(to right top, #a2beeb, #8ecfee, #8edde5, #a4e7d5, #c7eec7);
         background-repeat: no-repeat;
-  height: 1000px;
+        height: 100%;
+  height: 3000px;
     }
 
     ul {
@@ -90,6 +111,9 @@ $coinres= getcoins($username);
     .first-nav-element {
         padding-left: 30px;
     }
+    h3{
+      margin-top:10px;
+    }
 
     h1 {
         color:white:
@@ -122,13 +146,19 @@ body {
 
 /* Float four columns side by side */
 .column {
-  float: left;
+  display: flex;
+        justify-content: center;
   width: 25%;
   padding: 0 10px;
+
+  
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  
+  text-align: center;
+  margin: 0 -5px;}
 
 /* Clear floats after the columns */
 .row:after {
@@ -138,26 +168,45 @@ body {
 }
 
 /* Responsive columns */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 10000px) {
   .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;
   }
+  .card{
+margin-left: 0px;
+margin-right: 25px;
+  }
 }
 
 /* Style the counter cards */
-.card {
+.card{
+margin-left: 30px;
+  text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  border-radius:20px;
+  height: 100%;
+  border-radius:5px;
   text-align: center;
   background-color: #f1f1f1;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius:20px;
+  background-color: #7D3CF8;
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
 }
-    
+@keyframes text {
+  from {font-size:  0px; border-radius: 5px;}
+  to {font-size: 15px; border-radius: 20px; }
+}
 
+.card h3{
+  display: none;
+  animation-duration: 0.3s;
+}
+.card:active h3{
+  display: block;
+  animation-name: text;
+  animation-duration: 0.3s;
+}
 
 .topnav {
   overflow: hidden;
@@ -274,7 +323,7 @@ body {
     border: 1px solid;
         color: #FCBF4C;
         background-color: #7D3CF8;
-        padding: 10px 50px 10px 50px;
+        padding: 5px 15px 5px 15px;
         border-radius: 20px;
         text-decoration: none;
         color: #FCBF4C;
@@ -287,19 +336,28 @@ body {
     }
     a{
         text-decoration: none;
-        color:white;
+        color:black;
+        font-size: 15px;
     }
-  .frame{
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    overflow-x: hidden; /* Hide horizontal scrollbar */    
-border:none;
+    .order{
+      text-decoration: none;
+      border:none;
+      background-color: transparent;
   }
-  i{
-    padding: 0px 10px;
-  }
+
 </style>
 
 <body>
+<div class="se-pre-con"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script>
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+  });</script>
+
+
 
 <div class="navbar">
         <ul>
@@ -311,7 +369,7 @@ border:none;
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="Transaction_List.php">View Transactions</a>
+      <a href="#">View Transactions</a>
       <a href="Deposit.php">Deposit </a>
       <a href="#">Loan Coins</a>
     </div> 
@@ -322,14 +380,15 @@ border:none;
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="Transaction_List.php">View Transactions</a>
+      <a href="#">View Transactions</a>
       <a href="#">Calculate Currency</a>
       <a href="#">Charts</a>
     </div> 
   </div> </li>
 
   <li> <div class="dropdown">
-    <button class="dropbtn"><?php 
+    <button class="dropbtn">
+    <?php 
   echo "$username";
   ?>
       <i class="fa fa-caret-down"></i>
@@ -339,20 +398,59 @@ border:none;
       <a href="../login.php">Log Out</a>
     </div> 
   </div> </li>
-          
             <li class="signup"> <a class="signup" href="./login.php">My Wallet: <?php echo $coinres[0]; ?> Coins </a> </li>
         </ul>
     </div>
   <div class="Hub"> 
+  <h1>My Deposit History </h1>
+  <h2 style="font-size:15px">Total Transactions: <?php echo $count; ?> </h2>
+  <p>Order by:<button class="order"><a href="Transaction_List.php">Newest</a></button> <button class="order"><a href="Transaction_List_OrderOldest.php">Oldest</a></button></p> 
+<br/>
+  <div class="row">
+  <div class="column">
 
-  <iframe class="frame" src="frame_BI.php" scrolling="no" height="600px" width="100%" title="description">
+<div class="Newest">
+<?php 
+//$count is number of transactions
+for ($integer=1; $integer<=$count;$integer++)
+{
+  $trans=GetTransaction($username,$integer);
+  echo ' <br/>
+  <div class="card">
+    <h1 style="color: white; font-size: 20px;">Deposited To '.$trans[1].' </h1>
+    <hr/>
+    <h1 style="color: white; font-size: 35px;">Amount '.$trans[2].' coins </h1>
+    <h3 style="color: white; font-size: 15px; ">Bill:'.$trans[3].'</h3>
+    <h3 style="color: white; font-size: 15px; ">Reason:'.$trans[4].'</h3> 
+    <h3 style="color: white; font-size: 15px; ">Date:'.$trans[5].'</h3> 
+   <p style="color: white; font-size: 10px; float: left;">Transaction ID:'.$trans[0].'</p>  
+  <br/>
+  </div>
+  ';
+}
+?>
 
 </div>
-</div>
 
+
+</div>
+<!-- TEMPLATE CODE THAT GETS ECHOED AS TRANSACTION 
+  <br/>
+<div class="card">
+  <h1 style="color: white; font-size: 20px;">Deposited To berat</h1>
+  <hr/>
+  <h1 style="color: white; font-size: 35px;">Amount 50</h1>
+  <h3 style="color: white; font-size: 15px; ">Bill:</h3>
+  <h3 style="color: white; font-size: 15px; ">Reason:</h3> 
+  <h3 style="color: white; font-size: 15px; ">Date:</h3> 
+ <p style="color: white; font-size: 10px; float: left;">Transaction ID:</p>  
+<br/>
+</div>
+-->
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
-
-
-
-
