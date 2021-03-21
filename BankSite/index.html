@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<style>
+    * {
+        font-family: 'Kumbh Sans', sans-serif;
+    }
+
+    body {
+        height: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        background-color: #7D3CF8;
+    }
+
+    ul {
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: white;
+    }
+
+    .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    li {
+        margin: 10px;
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 20px 20px;
+        text-decoration: none;
+
+    }
+
+    .logo {
+        padding-left: 10px;
+        width: 52px;
+    }
+
+    .signup {
+        float: right;
+    }
+
+    .first-nav-element {
+        padding-left: 30px;
+    }
+
+    h1 {
+        color: white;
+        font-weight: 400;
+    }
+
+    span {
+        font-weight: 600;
+        border-bottom: 3px solid greenyellow;
+    }
+
+    .makemoney {
+        width: 500px;
+        float: right;
+        padding-top: 60px;
+        padding-right: 300px;
+    }
+
+    .landing-text {
+        position: relative;
+        top: 150px;
+        left: 150px;
+        font-size: 50px;
+    }
+
+    .info-text {
+        font-size: 20px;
+    }
+
+    .services {
+        overflow: auto;
+        width: 100%;
+        background-color: white;
+        position: relative;
+        top: 150px;
+    }
+
+    .table-main-text {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 1000;
+        overflow: hidden;
+
+    }
+
+    .table-secondary-text {
+        text-align: center;
+        overflow: hidden;
+        font-size: 20px;
+        color: rgb(133, 131, 131);
+    }
+
+    .card {
+        background-color: #ffffff;
+        overflow: hidden;
+
+        position: relative;
+
+        margin: 30px;
+        padding: 10px;
+        height: 500px;
+        width: 370px;
+        border: 3px solid #ffffff;
+        border-radius: 60px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        transition: 1.3s;
+    }
+
+    .card:hover {
+        transition: 0.3s;
+        width: 500px;
+
+    }
+
+    .card-image {
+        width: 350px;
+    }
+
+    .card-image-r {
+        width: 400px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .service-text {
+        color: black;
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .cards {
+            display: block;
+            position: relative;
+            left: 0%;
+        }
+
+        .services {
+            overflow: hidden;
+        }
+
+        .landing-text {
+            position: relative;
+            text-align: center;
+            top: 90px;
+            left: 1%;
+        }
+.card:hover{
+    transition: 0.3s;
+        width: auto;
+
+}
+.makemoney{
+    width: 350px;
+        padding-right: 110px;
+        padding-top: 60px;
+        
+}
+        .bank-pic {
+            visibility: hidden;
+        }
+        .signup{
+            display: none;
+        }
+    }
+
+    .bank-section {
+        position: relative;
+        background-color: #FCBF4C;
+        top: 80px;
+    }
+
+    .bank-pic {
+        position: relative;
+        width: 1000px;
+        left: 40%;
+    }
+
+    .ending-text {
+        position: relative;
+        color: #7D3CF8;
+        font-size: 80px;
+        font-weight: 5000;
+        width: 500px;
+        top: 350px;
+        left: 250px;
+    }
+
+    .makemoneybtn {
+        border: 1px solid;
+        color: #FCBF4C;
+        background-color: #7D3CF8;
+        padding: 20px 100px 20px 100px;
+        border-radius: 20px;
+    }
+
+    .makemoneylink {
+        text-decoration: none;
+        color: #FCBF4C;
+    }
+
+    button {
+        font-size: 15px;
+        transition: 1.0s;
+    }
+
+    button:hover {
+        font-size: 30px;
+        transition: 0.3s;
+    }
+
+    .follow {
+        background-color: #7D3CF8;
+
+    }
+
+    .follow-text {
+        font-size: 20px;
+        color: black;
+    }
+
+    .signup {
+        transition: 1s;
+        border: 0px solid #7D3CF8;
+        border-radius: 50px;
+        background-color: #7D3CF8;
+        color: white;
+    }
+
+    .signup:hover {
+        transition: 0.3s;
+        background-color: #FCBF4C;
+        color: black;
+    }
+
+    .card-image-d {
+        width: 280px;
+    }
+
+    .card-image-s {
+        width: 300px;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li> <img class="logo" src="./img/moneytreelogo_00000.png"> </li>
+            <li class="first-nav-element"> <a href="#">Home</a> </li>
+            <li> <a href="#">Contact</a> </li>
+            <li class="signup"> <a class="signup" href="./login.php">Plant Your Money Tree Now!</a> </li>
+        </ul>
+    </div>
+
+    <section class="first-section">
+        <img class="makemoney" src="./img/makemoney.jpg">
+        <h1 class="landing-text">Manage Money <span>Easier</span> <br /> with moneytrees <br />
+            <p class="info-text">*yes, by watering money trees...duh</p>
+        </h1>
+
+    </section>
+
+    <section class="services">
+        <h1 class="service-text"> How It Works </h1>
+        <div class="cards">
+
+            <div class="card">
+                <div class="center"> <img class="card-image-r" src="./img/money_00000.png"></div>
+                <p class="table-main-text"> Plant Your tree </p>
+                <p class="table-secondary-text"> Connect Your Bank Account and start managing your virtual money in any way you like. </p>
+            </div>
+
+            <div class="card">
+                <div class="center"> <img class="card-image-d" src="./img/discord_00000_00000.png"></div>
+                <p class="table-main-text"> Deposit, Buy and Trade </p>
+                <p class="table-secondary-text"> Use your coins to buy, deposit it into someone elses account, or trade virtual money with someone you would like. </p>
+            </div>
+
+            <div class="card">
+                <div class="center"> <img class="card-image-s" src="./img/support_00000.png"></div>
+                <p class="table-main-text"> How Do I Earn The Money ? </p>
+                <p class="table-secondary-text"> You can ask for loan, and pay the interest at custom dates. You can also earn more coins by checking the website daily and watering the money tree... yes, a money tree </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bank-section">
+        <h1 class="ending-text">Tired Of Waiting ? <br />
+            <p class="info-text">So am i, just click the button below and plant a tree</p> <button
+                class="makemoneybtn"><a class="makemoneylink" href="./login.php">MAKE $$$</a></button>
+        </h1>
+
+        <img class="bank-pic" src="./img/waiting.jpg">
+    </section>
+<style>
+    @media only screen and (max-width: 1000px) {
+    
+    .bank-pic{
+        display: none;
+    }
+    .ending-text{
+        text-align: center;
+        position: relative;
+        color: #7D3CF8;
+        font-size: 80px;
+        font-weight: 5000;
+        width: 500px;
+        top: 100px;
+        left: 0px;
+    }
+    .info-text{
+        font-size: 25px;
+    }
+.bank-section{
+    height: 650px;
+}
+    }
+</style>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uplatnica</title>
+</head>
+<body>
+   
+<form action="Uplatnica" method="POST">
+    <!-- NALOGODAVAC -->
+    <label for="name">Ime Prezime</label>
+  <input type="text" id="name" name="name"><br><br>
+
+  <label for="Adresa">Adresa</label>
+  <input type="text" id="Adresa" name="Adresa"><br><br>
+
+  <label for="BankaNalog">Banka na nalogodavacot </label>
+  <input type="text" id="BankaNalog" name="BankaNalog"><br><br>
+
+  <label for="EMBG">EMBG</label>
+  <input type="number" min="000000000000" max="999999999999" id="EMBG" name="EMBG"><br><br>
+
+  <label for="doznaka">Celna doznaka</label>
+  <input type="text" id="doznaka" name="doznaka"><br><br>
+
+
+<!-- PRIMAC -->
+<label for="Primac">Ime i Prezime</label>
+<input type="text" id="primac" name="primac"><br><br>
+
+<label for="bankaprimac">Banka na primacot</label>
+<select name="bankaprimac" id="bankaprimac">
+    <option value="Sparkasse">MoneyTree</option>
+    <option value="Halkbank">Halkbank</option>
+    <option value="Stopanska">Stopanska</option>
+    <option value="Komercijalna">Komercijalna</option>
+    
+</select> <br> <br>
+
+    <label for="iznos">Iznos</label>
+    <input type="number"  id="Iznos" name="Iznos"><br><br>
+
+    <label for="smetkaprimac">Smetka</label>
+    <input type="number"  id="smetkap" name="smetkap"><br><br>
+
+    <button type="submit" name="submit">Login</button>
+</form>
+
+</body>
+</html>
