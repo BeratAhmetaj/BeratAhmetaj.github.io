@@ -1,0 +1,20 @@
+{
+  "name": "MoneyTree by Berat",
+  "short_name": "MoneyTree",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#7D3CF8",
+  "theme_color": "#7D3CF8",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "https://moneytree-berat.000webhostapp.com/img/moneytreeLogo_512.png",
+      "type": "image/png", "sizes": "512x512"
+    },
+    {
+      "src": "https://moneytree-berat.000webhostapp.com/img/moneytreeLogo_192.png",
+      "type": "image/png", "sizes": "192x192"
+    }   
+  ]
+}
