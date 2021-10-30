@@ -1,10 +1,11 @@
 <?php 
 //Local Database Info 
-
+/*
 $serverName = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
 $dBName = "moneytree";
+*/
 
 
 
