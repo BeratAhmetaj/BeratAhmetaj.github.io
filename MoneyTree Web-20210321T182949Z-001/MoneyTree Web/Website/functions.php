@@ -49,7 +49,7 @@ function usernameTaken($username, $connect){
 function createUser($username,$pass,$email){
     include "dbinfo.php";
 $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
-    $sql = "INSERT INTO `usersdata` (`Id`, `Email`, `Pass`, `Username`, `EMBG`, `NameSurname`, `LivingAdress`) VALUES (NULL, '$email', '$hashedpass', '$username','','','' )";
+    $sql = "INSERT INTO `usersdata` (`Id`, `Email`, `Pass`, `Username`, `EMBG`, `NameSurname`, `LivingAdress`, `CreditCard`,`CVV` ,`Expiry`) VALUES (NULL, '$email', '$hashedpass', '$username',NULL,NULL,NULL,NULL,NULL,NULL)";
     $result = mysqli_query($connect, $sql);
 } 
 
@@ -58,7 +58,7 @@ $hashedpass = password_hash($pass,PASSWORD_DEFAULT);
 //Adding the user on the moneydata Table with null coins and null transactions
 function createmoney($username){
     include "dbinfo.php";
-    $sql = "INSERT INTO `moneydata` (`Username`, `coins`, `num_transaction`) VALUES ('$username', NULL, NULL);";
+    $sql = "INSERT INTO `moneydata` (`Username`, `coins`, `num_transaction`,`Loan_Count`,`LoanAmount`) VALUES ('$username', NULL, NULL, NULL,NULL);";
     $result = mysqli_query($connect, $sql);
 } 
 
