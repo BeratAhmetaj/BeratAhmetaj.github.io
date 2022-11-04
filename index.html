@@ -42,21 +42,101 @@ transition: 2s;
 a{
   text-decoration: none;
   color: white;
-  font-size: 30px;
+  font-size: 100px;
+  font-weight: 500;
 }
-button:hover{
+.btn:hover{
   width:555px;
   transition: 0.5s;
 }
+
+
+
+
+/* <- Demo Stuff Start */
+
+body{
+  margin:0;
+}
+
+.container {
+
+}
+.btn {
+
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+text-align: center;
+display: flex;
+justify-content:center;
+margin-left: auto;
+margin-right: auto;
+
+border: 3px solid white;
+background-color: transparent;
+border-radius: 20px;
+width: 500px;
+height: 50px;
+
+transition: 2s;
+ }
+
+/* Demo Stuff End -> */
+
+/* <- Magic Stuff Start */
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+.btn-1 {
+  background-image: linear-gradient(to right, #6200ff 0%, #9b85fd 51%, #9865f6 100%);
+}
+
+.btn-2 {
+  background-image: linear-gradient(to right, #00ccff 0%, #2676ff 51%, #05c5ff 100%);
+}
+
+.btn-3 {
+  background-image: linear-gradient(to right, #00ff5e 0%, #009900 51%, #005204 100%);
+}
+
+.btn-4 {
+  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+
+.btn-5 {
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+}
+
+/* Magic Stuff End -> */
+
+
+
+
+
     </style>
     </head>
 <body>
-
+<p style="color: gray;"> Website in progress </p>
 <h1> Projects: </h1>
 
-<button><a href="./NG-website_HighSchool/gfhome.html"> Geforce Shop </a></button>
-<br/>
-<button><a href="https://moneytree-berat.000webhostapp.com/"> MoneyTree </a></button>
+<div class="container">
+  <br/>
+  <a class="btn btn-1" href="https://moneytree-berat.000webhostapp.com/"> MoneyTree </a>
+  <br/>
+  <a  class="btn btn-2" href="https://github.com/BeratAhmetaj/FINKI"> Finki </a>
+  <br/>
+  <a class="btn btn-3" href="./NG-website_HighSchool/gfhome.html"> Geforce Shop </a>
+  <br/>
+
+</div>
 
 </body>
 </html>
