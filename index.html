@@ -3,142 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/1389b85be8.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
-    
-    <title>Berat Ahmteaj | Portfolio</title>
+    <title>Interactive Profile</title>
     <style>
-body{
-background-color: black;
-text-align: center;
-}
-h1{ 
-color: white;
-text-align: center;
-}
-button{
-color: rgb(255, 255, 255);
-text-align: center;
-display: flex;
-justify-content:center;
-margin-left: auto;
-margin-right: auto;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2c2f33;
+            font-family: Arial, sans-serif;
+        }
 
-border: 3px solid white;
-background-color: transparent;
-border-radius: 20px;
-width: 500px;
-height: 50px;
+        .container {
+            text-align: center;
+            background-color: #23272a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
 
-transition: 2s;
-}
-a{
-  text-decoration: none;
-  color: white;
-  font-size: 100px;
-  font-weight: 500;
-}
-.btn:hover{
-  width:555px;
-  transition: 0.5s;
-}
+        .container img {
+            border-radius: 5px;
+        }
 
+        h1 {
+            color: #7289da;
+            margin-bottom: 20px;
+        }
 
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #7289da;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
+        a:hover {
+            background-color: #99aab5;
+        }
 
-/* <- Demo Stuff Start */
+        .github-stats img {
+            margin: 10px 0;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
 
-body{
-  margin:0;
-}
+        .github-stats img:hover {
+            transform: scale(1.05);
+        }
 
-.container {
-
-}
-.btn {
-
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
- /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  box-shadow: 0 0 20px #eee;
-  border-radius: 10px;
-
-  color: rgb(255, 255, 255);
-text-align: center;
-display: flex;
-justify-content:center;
-margin-left: auto;
-margin-right: auto;
-
-border: 3px solid white;
-background-color: transparent;
-border-radius: 20px;
-width: 500px;
-height: 50px;
-
-transition: 2s;
- }
-
-/* Demo Stuff End -> */
-
-/* <- Magic Stuff Start */
-
-.btn:hover {
-  background-position: right center; /* change the direction of the change here */
-}
-
-.btn-1 {
-  background-image: linear-gradient(to right, #6200ff 0%, #9b85fd 51%, #9865f6 100%);
-}
-
-.btn-2 {
-  background-image: linear-gradient(to right, #00ccff 0%, #2676ff 51%, #05c5ff 100%);
-}
-
-.btn-3 {
-  background-image: linear-gradient(to right, #00ff5e 0%, #009900 51%, #005204 100%);
-}
-
-.btn-4 {
-  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
-}
-
-.btn-5 {
-  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
-}
-
-/* Magic Stuff End -> */
-
-
-
-
-
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
-    </head>
+</head>
 <body>
-<p style="color: gray;"> Website in progress </p>
-<h1> Projects: </h1>
+    <div class="container">
+        <h1>My GitHub Profile</h1>
+        <a href="https://github.com/beratahmetaj" target="_blank">Visit my GitHub</a>
+        <div class="github-stats">
+            <p><img src="https://komarev.com/ghpvc/?username=beratahmetaj&label=Profile%20views&color=brightgreen&style=for-the-badge" alt="Profile views"></p>
+            <p><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=beratahmetaj&show_icons=true&locale=en&include_all_commits=true&theme=dracula&layout=compact" alt="Top Languages"></p>
+            <p><img src="https://github-readme-stats.vercel.app/api?username=beratahmetaj&show_icons=true&locale=en&include_all_commits=false&theme=dracula" alt="GitHub Stats"></p>
+            <p><img src="https://i.pinimg.com/564x/73/2d/9b/732d9b8db48a53bc901b2350676e85fd.jpg" alt="Image"></p>
+        </div>
+        
+    </div>
 
-<div class="container">
-  <br/>
-  <a class="btn btn-1" href="https://moneytree-berat.000webhostapp.com/"> MoneyTree </a>
-  <br/>
-  <a  class="btn btn-2" href="https://github.com/BeratAhmetaj/FINKI"> Finki </a>
-  <br/>
-  <a class="btn btn-3" href="./NG-website_HighSchool/gfhome.html"> Geforce Shop </a>
-  <br/>
-  <a class="btn btn-3" href="./untitled.html"> Github Status </a>
-  <br/>
-
-</div>
+    
 
 </body>
 </html>
